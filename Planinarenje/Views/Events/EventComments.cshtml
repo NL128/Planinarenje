@@ -1,0 +1,139 @@
+﻿@model IEnumerable<DBLibrary.Models.EventComment>
+@{
+    ViewBag.Title = "EventComments";
+}
+
+<link href="~/Theme/StarRatings.css" rel="stylesheet" />
+<div class="breadcumb-area bg-img bg-overlay" style="background-color:#5b7eb6;">
+</div>
+
+<div class="container" style="margin-top:50px;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+            <h2 class="h3 mb-4 page-title">Place Comments</h2>
+            <div class="my-4">
+                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                    <li class="nav-item">
+
+                        <a class="nav-link visited-link active " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Comments</a>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link visited-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">AddComment</a>
+                    </li>
+
+
+
+                </ul>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div id="home">
+                       
+                                <input type="hidden" id="eventId" value="@ViewBag.EventID" />
+                            
+                            
+
+                            @Html.ValidationSummary()
+                            <div class="listing-verify container-fluid" id="placeComments">
+
+                                <!--Write all comments-->
+                                @if (Model.Count() > 0)
+                                {
+
+                                    { Html.RenderPartial("_EventComment",  Model); }
+
+                                }
+                                else
+                                {
+                                    <label>No comments found!</label>
+                                }
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div id="pass5">
+                            <!--add comment-->
+                            <div class="container pb-cmnt-container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <div class="panel panel-info">
+                                            <div class="panel-body">
+                                                <div class="container">
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                    <form>
+                                                        <div class="row">
+                                                            <input placeholder="Write your title here!" class="border-info"   id="eventTitle"/>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <textarea placeholder="Write your comment here!" class="border-info" cols="120" rows="7" id="textArea"></textarea>
+
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="rating">
+                                                                <input type="radio" onclick="updateOcena(this.value)" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" onclick="updateOcena(this.value)" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" onclick="updateOcena(this.value)" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" onclick="updateOcena(this.value)" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" onclick="updateOcena(this.value)" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <button class="btn btn-primary" style="cursor:pointer;" type="button" onclick="SendComment()">Send Comment</button>
+                                                        </div>
+                                                    </form>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>To add comment please login first !</label>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Theme/js/SendComment.js"></script>
+<script>
+    let placeComments = document.getElementById("placeComments");
+    let eventId = document.getElementById("eventId");
+    let commentArea = document.getElementById("textArea");
+    let eventTitle = document.getElementById("eventTitle");
+    let ocena = 0;
+    function SendComment() {
+
+        let comment = {
+            EventCommentDescription: commentArea.value,
+            ID: eventId.value,
+            SingleEvaluation: ocena,
+            EventComentTitle: eventTitle.value
+        }
+
+        AjaxCallCommentArea("/Events/AddEventComment", comment, "post", placeComments);
+    }
+
+    function updateOcena(evaluation) {
+        ocena = evaluation;
+
+    }
+</script>
+@{ Html.RenderPartial("_GoBack");}
+

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache" />
+    <title>@ViewBag.Title - Traveling</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <link rel="icon" href="img/core-img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+    <!-- Core Stylesheet -->
+    <link href="~/Theme/style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="~/Theme/css/responsive/responsive.css" rel="stylesheet">
+
+</head>
+<body>
+    <div id="preloader">
+        <div class="SH-load"></div>
+    </div>
+    @{Html.RenderPartial("_SearchArea"); }
+    @{Html.RenderPartial("_SearchDeviceArea"); }
+    @{Html.RenderPartial("_Header"); }
+
+
+    @RenderBody()
+
+
+    @{ Html.RenderPartial("_Footer"); }
+
+    <script src="~/Theme/js/jquery/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/tilt.js@1.2.1/dest/tilt.jquery.min.js"></script>
+    <!-- Popper js -->
+    <script src="~/Theme/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="~/Theme/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="~/Theme/js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="~/Theme/js/active.js"></script>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    *@@RenderSection("scripts", required: false)
+</body>
+</html>

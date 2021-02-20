@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNet.Identity
+@using Planinarenje.Models;
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <!--<a class="navbar-brand">-->
+
+        @*@Html.ActionLink("Hello " + User.Identity.GetRealUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+        <!--</a>-->
+        <a href="~/User/Edit" class="navbar-right" style="width:auto; cursor:pointer;" title="Edit Profile"><img src="~/Users/Img/@User.Identity.GetImage()" style="width:50px; height:50px; margin:0 auto; border-radius:50px;"></a>
+
+        <a class="a-a-set-extra" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+      
+
+          
+        
+    }
+}
+else
+{
+
+    <a>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</a>
+    <a>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</a>
+
+}

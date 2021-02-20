@@ -1,0 +1,493 @@
+﻿@model Planinarenje.Models.ClientInputs.UploadUserData
+
+@{
+    ViewBag.Title = "Edit Profile";
+}
+
+<div class="breadcumb-area bg-img bg-overlay" style="background-color:#5b7eb6;">
+</div>
+
+<div class="container" style="margin-top:50px;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+            <h2 class="h3 mb-4 page-title">Settings</h2>
+            <div class="my-4">
+                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                    <li class="nav-item">
+
+                        <a class="nav-link visited-link active " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Profile</a>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link visited-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Security</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link visited-link" id="nav-profile-tab-guide" data-toggle="tab" href="#nav-profile-guide" role="tab" aria-controls="nav-profile" aria-selected="false">Guide</a>
+                    </li>
+                    @if (Model.Profil != null && Model.Profil.AspNetUser.IsGuid)
+                    {
+                        <li class="nav-item">
+
+                            <a class="nav-link visited-link" id="nav-profile-tab-guide" data-toggle="tab" href="#nav-profile-activity" role="tab" aria-controls="nav-profile" aria-selected="false">Activities</a>
+                        </li>
+                    }
+                </ul>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div id="home">
+                            <div class="listing-verify container-fluid">
+
+                                @{Html.RenderPartial("_IsUserVerified", Model.Profil.AspNetUser); }
+                            </div>
+                            <div class="row mt-5 align-items-center">
+                                <div class="review-title-ratings d-flex justify-content-between">
+
+                                    <div class="ratings">
+                                        @{
+                                            if (Model.Profil.Ocena_Profila != null)
+                                            {
+                                                Html.RenderPartial("_AverageDisplay", new Planinarenje.Models.AverageInput() { Average = Model.Profil.Ocena_Profila.GetAverage() });
+                                            }
+                                            else
+                                            {
+                                                Html.RenderPartial("_AverageDisplay", new Planinarenje.Models.AverageInput() { Average = 0 });
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <!--User form here-->
+                            @if (Model.Profil.ProfilID > 0)
+                            {
+                                {
+                                    Html.RenderPartial("_GuideUserForm", new Planinarenje.Models.ClientInputs.GuideUserDataPartial()
+                                    {
+                                        ImageName = Model.Profil.AspNetUser.Image,
+                                        FirstName = Model.Profil.AspNetUser.RealUserName.Split(' ')[0],
+                                        LastName = Model.Profil.AspNetUser.RealUserName.Split(' ')[1],
+                                        Email = Model.Profil.AspNetUser.Email,
+                                        Phone = Model.Profil.AspNetUser.PhoneNumber,
+                                        ShortDescription = Model.Profil.ShortDescription
+
+
+                                    }); ; ;
+                                }
+                            }
+                            else
+                            {
+                                {
+                                    Html.RenderPartial("_NotGuideUserForm", new Planinarenje.Models.ClientInputs.NotGuideUserData()
+                                    {
+                                        ImageName = Model.Profil.AspNetUser.Image,
+                                        FirstName = Model.Profil.AspNetUser.RealUserName.Split(' ')[0],
+                                        LastName = Model.Profil.AspNetUser.RealUserName.Split(' ')[1],
+                                        Email = Model.Profil.AspNetUser.Email,
+                                        Phone = Model.Profil.AspNetUser.PhoneNumber
+
+                                    });
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div id="pass5">
+                            @{ Html.RenderPartial("_ChangePassword", new Planinarenje.Models.ClientInputs.ChangerPassword()); }
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile-guide" role="tabpanel" aria-labelledby="nav-profile-tab-guide">
+                        <div id="pass-guide">
+                            @{Html.RenderPartial("_IsGuide", Model.Profil.AspNetUser); }
+                            @{Html.RenderPartial("_UploadUserPartial", Model); }
+                        
+                        </div>
+                        
+                    </div>
+
+                    <!--Activities-->
+                    @if (Model.Profil.AspNetUser.IsGuid)
+                    {
+                        <div class="tab-pane fade" id="nav-profile-activity" role="tabpanel" aria-labelledby="nav-profile-tab-guide">
+                            <div id="pass-activity">
+
+                                @{
+                                    Html.RenderPartial("_UserActivities", new List<DBLibrary.Models.Aktivnosti>(Model.Profil.Aktivnosti));
+                                }
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    <!--Bundle Scripts Later and export to external file-->
+    <!--Change Activity For Guides -->
+    <script>
+        let allCheckActivities = document.querySelectorAll(".custom-activity-checker");
+        let activityParent = document.querySelector("#pass-activity");
+        function UpdateChange(id) {
+
+            let activityInput = {
+                ID: id
+            }
+
+            ChangeActivityAjax("/Upload/ChangeActivity", "post", activityInput, activityParent);
+        }
+        function makeAllUnaditableOrEditable(editable) {
+            for (let i = 0; i < allCheckActivities.length; i++) {
+                allCheckActivities[i].setAttribute("contenteditable", editable);
+            }
+        }
+        function ChangeActivityAjax(url, method, data, frmId) {
+
+            makeAllUnaditableOrEditable("true");
+
+            let isSent = false;
+            $.ajax({
+                url: url,
+                data: data,
+                method: method,
+
+                success: function (data) {
+
+                    frmId.innerHTML = data;
+                    isSent = true;
+                },
+                error: function (data) {
+                    frmId.innerHTML = data;
+                    isSent = true;
+                }
+
+            });
+            if (isSent) {
+                makeAllUnaditableOrEditable("false");
+            }
+        }
+    </script>
+    <!--Change Password for user and update data  -->
+    <script>
+        let addFormPassId = document.getElementById("pass5");
+        function changePassword() {
+            let user = {
+                CurrentPassword: document.getElementById("inputCurrentPassword5").value,
+                Password: document.getElementById("inputPassword5").value,
+                ConfirmPassword: document.getElementById("inputPassword6Confirm").value
+            }
+
+            var form = document.querySelector('#changePasswordForm');
+
+
+            MakeAjaxCall("/Account/ChangePassword", "post", user, form);
+
+        }
+        class BaseUserData {
+            constructor(FirstName, LastName, Email, Phone, Image) {
+                this.FirstName = FirstName;
+                this.LastName = LastName;
+                this.Email = Email;
+                this.Phone = Phone;
+                this.Image = Image;
+            }
+        }
+        class UserData extends BaseUserData {
+            constructor(FirstName, LastName, Email, Phone, Image) {
+                super(FirstName, LastName, Email, Phone, Image);
+                this.Form = new FormData();
+            }
+            getForm() {
+
+                this.Form.append("FirstName", this.FirstName);
+                this.Form.append("LastName", this.LastName);
+                this.Form.append("Email", this.Email);
+                this.Form.append("Phone", this.Phone);
+                this.Form.append("Image", this.Image);
+                return this.Form;
+            }
+
+        }
+        class GuideUserData extends BaseUserData {
+            constructor(FirstName, LastName, Email, Phone, Image, ShortDescription, Country, State) {
+                super(FirstName, LastName, Email, Phone, Image);
+                this.ShortDescription = ShortDescription;
+                this.Country = Country;
+                this.State = State;
+                this.Form = new FormData();
+
+            }
+            getForm() {
+                this.Form.append("FirstName", this.FirstName);
+                this.Form.append("LastName", this.LastName);
+                this.Form.append("Email", this.Email);
+                this.Form.append("Phone", this.Phone);
+                this.Form.append("Image", this.Image);
+                this.Form.append("ShortDescription", this.ShortDescription);
+                this.Form.append("Country", this.Country);
+                this.Form.append("State", this.State);
+
+                return this.Form;
+            }
+            appendToForm(name, field) {
+                this.Form.append(name, field);
+            }
+
+
+        }
+
+        function UpdateNotGuideUser() {
+            //not guide
+            let formId = document.getElementById("NotGuideFormId9200");
+            let baseUserData = new UserData(document.getElementById("firstname").value, document.getElementById("lastname").value, document.getElementById("inputEmail4").value, document.getElementById("inputAddress5").value, document.getElementById("wizard-picture").files[0]);
+
+            MakeAjaxCall("/User/NotGuideUserData", "post", baseUserData.getForm(), formId);
+
+        }
+        function UpdateGuideUserData() {
+            //Guide data
+            let formId = document.getElementById("GuideForm989");
+            let guideUserData = new GuideUserData(document.getElementById("firstname").value, document.getElementById("lastname").value, document.getElementById("inputEmail4").value, document.getElementById("inputAddress5").value, document.getElementById("wizard-picture").files[0], document.getElementById("inputDescription90").value, document.getElementById("Country22").value, document.getElementById("State22").value);
+            MakeAjaxCall("/Upload/GuideUserData", "post", guideUserData.getForm(), formId);
+        }
+        function MakeAjaxCall(url, method, data, frmId) {
+            $.ajax({
+                url: url,
+                data: data,
+                method: method,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    frmId.innerHTML = data;
+                },
+                error: function (data) {
+                    frmId.innerHTML = data;
+                }
+            });
+        }
+    </script>
+
+    <!--Files  Upload area  -->
+    <script>
+        const fileInput = document.querySelector('#js-upload-files');
+        const progressBar = document.getElementById("progressBarId");
+        const eventLog = document.querySelector('.event-log-contents');
+        const reader = new FileReader();
+        const time = 4;
+        function handleEvent(event) {
+
+
+
+            if (event.type === "load") {
+
+                var percent = (event.loaded / event.total) * 100;
+                //**percent** variable can be used for modifying the length of your progress bar.
+                console.log(percent);
+
+                progressBar.setAttribute("aria-valuenow", percent);
+                progressBar.setAttribute("style", "width:" + percent + "%;");
+
+
+            }
+
+        }
+
+        function addListeners(reader) {
+            reader.addEventListener('loadstart', handleEvent);
+            reader.addEventListener('load', handleEvent);
+            reader.addEventListener('loadend', handleEvent);
+            reader.addEventListener('progress', handleEvent);
+            reader.addEventListener('error', handleEvent);
+            reader.addEventListener('abort', handleEvent);
+        }
+
+        function handleSelected(e) {
+
+            const selectedFile = fileInput.files[0];
+            if (selectedFile) {
+                addListeners(reader);
+                reader.readAsDataURL(selectedFile);
+            }
+        }
+
+        fileInput.addEventListener('change', handleSelected);
+
+
+        const companySelect = document.querySelector("#inputCompany909");
+
+
+        function uploadToServer() {
+            var form = document.querySelector('#js-upload-form');
+
+
+            let ajax = new XMLHttpRequest();
+
+
+
+            ajax.onreadystatechange = function () {
+                progressBar.setAttribute("aria-valuenow", 0);
+                progressBar.setAttribute("style", "width:" + 0 + "%;");
+                if (ajax.status) {
+
+                    if (ajax.status == 200 && (ajax.readyState == 4)) {
+                        //To do tasks if any, when upload is completed
+                        alert("Complete");
+                    }
+                }
+            }
+            ajax.upload.addEventListener("progress", function (event) {
+
+                var percent = (event.loaded / event.total) * 100;
+                //**percent** variable can be used for modifying the length of your progress bar.
+                console.log(percent);
+                progressBar.setAttribute("aria-valuenow", percent);
+                progressBar.setAttribute("style", "width:" + percent + "%;");
+            });
+
+            form.addEventListener("progress", function (event) {
+                var percent = (event.loaded / event.total) * 100;
+                //**percent** variable can be used for modifying the length of your progress bar.
+                console.log(percent);
+                progressBar.setAttribute("aria-valuenow", percent);
+                progressBar.setAttribute("style", "width:" + percent + "%;");
+            });
+            form.submit();
+        }
+    </script>
+
+    <!--Autocomplete area needs to be extracted to external file-->
+    <script>
+
+        let lang = "en";
+
+        const url = 'https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=kI9Red6f6Bmm5ummtOtMXgTIbML55lQDCFqpgX2ZgLo';
+        const query = '&query=';
+        var queryInput = 'Beograd';
+        const language = '&language=';
+        var queryLanguage = 'en';// for serbian is = 'sr'
+        const country = '&country=';
+        var queryCountry = 'SRB';
+        const restQuery = '&beginHighlight=%3Cb%3E&endHighlight=%3C/b%3E';
+
+
+        function appendElementToUI(data, ulElement, inputId) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "autocompleteLi-item");
+            li.addEventListener("click", function () {
+                document.getElementById(inputId).value = data;
+                ulElement.setAttribute("class", "autocompleteClose");
+            });
+            li.innerHTML = data;
+
+            ulElement.appendChild(li);
+        }
+        function GetSingleAddress(data) {
+            return JSON.stringify(data).replace(/^["'](.+(?=["']$))["']$/, '$1');
+        }
+        function autocompleteGetCountry(search, id) {
+
+            let invoke = url + query + search + language + lang;
+            let ulAutocompletDisplay = document.getElementById("countryAreaDetection");
+            clearDisplay(ulAutocompletDisplay);
+            $.get(invoke, function (data, status) {
+
+                if (status == "success") {
+
+                    ulAutocompletDisplay.setAttribute("class", "autocompleteDisplay");
+
+                    for (let i = 0; i < JSON.stringify(data["suggestions"]).length; i++) {
+                        if (JSON.stringify(data["suggestions"][i] != "undefined") && JSON.stringify(data["suggestions"][i] != null)) {
+                            let country = GetSingleAddress(data["suggestions"][i].address.country);
+                            appendElementToUI(country, ulAutocompletDisplay, id);
+                        }
+                    }
+                }
+
+
+            });
+
+        }
+        function autocompleteGetCityState(search, id) {
+            let invoke = url + query + search + language + lang;
+            let ulAutocompletDisplay = document.getElementById("stateCountry");
+            clearDisplay(ulAutocompletDisplay);
+            $.get(invoke, function (data, status) {
+                if (status == "success") {
+                    ulAutocompletDisplay.setAttribute("class", "autocompleteDisplay");
+
+                    for (let i = 0; i < JSON.stringify(data["suggestions"]).length; i++) {
+
+                        if (JSON.stringify(data["suggestions"][i] != "undefined") && JSON.stringify(data["suggestions"][i] != null)) {
+                            let city = GetSingleAddress(data["suggestions"][i].address.city);
+
+                            if (isNaN(city) || city == 'undefined' || city == null) {
+                                let state = GetSingleAddress(data["suggestions"][i].address.state);
+                                appendElementToUI(state, ulAutocompletDisplay, id);
+                            }
+                            else {
+
+                                appendElementToUI(city, ulAutocompletDisplay, id);
+                            }
+                        }
+                    }
+
+                }
+
+            });
+
+        }
+        function autocompleteCountryInit(search, id) {
+
+            autocompleteGetCountry(search, id);
+        }
+        function autocompleteCityStateInit(search, id) {
+            autocompleteGetCityState(search, id);
+        }
+        function changeLanguage(setLanguage) {
+            lang = setLanguage;
+        }
+
+        function autocompleteCompanyInit(search, id) {
+            autocompletCompany(search, id);
+        }
+        function clearDisplay(elemen) {
+            elemen.innerHTML = "";
+        }
+        function autocompletCompany(search, id) {
+            let invokeLocalServer = "/User/GetCompanies";
+            let ulAutocompletDisplay = document.getElementById("inputCompanyDisplay");
+            clearDisplay(ulAutocompletDisplay);
+            $.post(invokeLocalServer, { Search: search }, function (data, status) {
+                if (status == "success") {
+                    let result = JSON.parse(data);
+                    ulAutocompletDisplay.setAttribute("class", "autocompleteDisplay");
+
+                    for (let i = 0; i < result.length; i++) {
+                        if (JSON.stringify(result[i] != "undefined") && result[i] != null) {
+                            let drustvo = result[i].ImeDrustva;
+                            appendElementToUI(drustvo, ulAutocompletDisplay, id);
+                        }
+                    }
+
+                }
+
+            });
+
+        }
+
+
+
+
+    </script>
+    <!--Upload picture area-->
+    <script src="~/Theme/UploadPicture.js"></script>
+}
+
+

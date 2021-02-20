@@ -1,0 +1,34 @@
+﻿@model  ICollection<DBLibrary.Models.Aktivnosti>
+
+<form>
+    @Html.ValidationSummary()
+    <label class="success">@ViewBag.Message</label>
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <p class="mb-2">Select your activity</p>
+            <p class="small text-muted mb-2">Activities will be reflected to your event list </p>
+            
+        </div>
+        @foreach (var activity in Model)
+        {
+            <div class="col-md-6">
+
+                <label class="custom-control custom-checkbox mb-3">
+                    @if (activity.IsActive)
+                    {
+                        <input type="checkbox" id="@activity.AktivnostiID" contenteditable="true" checked class="custom-control-input custom-activity-checker" onclick="UpdateChange(this.id)">
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="@activity.AktivnostiID" contenteditable="true" class="custom-control-input custom-activity-checker" onclick="UpdateChange(this.id)">
+                    }
+                    <span class="custom-control-indicator checkBox-color-mod"></span>
+                    <span class="custom-control-description">@activity.ImeAktivnosti</span>
+                </label>
+
+
+            </div>
+        }
+
+    </div>
+</form>

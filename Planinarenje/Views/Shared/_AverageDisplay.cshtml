@@ -1,0 +1,28 @@
+﻿@model  Planinarenje.Models.AverageInput
+@{
+    ViewBag.Title = "_AverageDisplay";
+}
+
+@{
+    if (Model != null)
+    {
+        int averageCount = 0;
+        do
+        {
+
+
+
+
+        <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+            averageCount++;
+
+
+        } while (averageCount < Model.Average);
+        while (averageCount < 5)
+        {
+        <img src="~/Theme/img/clients-img/star-unfill.png" alt="">
+                averageCount++;
+            }
+        }
+    }
+

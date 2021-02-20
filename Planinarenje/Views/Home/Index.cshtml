@@ -1,0 +1,350 @@
+﻿@model IEnumerable<DBLibrary.Models.Country>
+@{
+    ViewBag.Title = "Home ";
+}
+
+<section class="SH-welcome-area bg-img bg-overlay" style="background-image: url(../../Theme/img/bg-img/mountainSerbia.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-10">
+                <div class="hero-content">
+                    <h2>Discover places near you</h2>
+                    <h4>This is the best guide for nature lovers , advanturers and explorers!   </h4>
+                </div>
+                <!-- Hero Search Form -->
+                <div class="hero-search-form">
+                    <!-- Tabs -->
+                    <div class="nav nav-tabs" id="heroTab" role="tablist">
+                        @*<a class="nav-item nav-link" id="nav-places-tab" data-toggle="tab" href="#nav-places" role="tab" aria-controls="nav-places" aria-selected="true">Places</a>*@
+                        <a class="nav-item nav-link active" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Events</a>
+                    </div>
+                    <!-- Tabs Content -->
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-places" role="tabpanel" aria-labelledby="nav-places-tab">
+                            <h6>What are you looking for?</h6>
+                            <form action="~/Events/SearchEvents" method="get">
+                                <input class="text-justify" name="EventInput" style="margin:0 10px; min-height:50px; width:100%; max-width:700px;" spellcheck="true" placeholder="Search event" />
+
+
+                                <input id="getCountry" name="ID" type="hidden" />
+                                <select class="custom-select" onchange="RegisterChangedCountry(this.options[this.selectedIndex].value)">
+                                    <option selected id="-1" value="-1">Countries</option>
+                                    @if (Model != null)
+                                    {
+                                        foreach (var country in Model)
+                                        {
+                                            <option id="@country.CountryID" value="@country.CountryID">@country.CountryName </option>
+                                        }
+                                    }
+
+
+                                </select>
+                              
+                                <button type="submit" class="btn SH-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
+                            </form>
+
+                        </div>
+                        <div class="displaySearchResult">
+
+                        </div>
+                        <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+                            <h6>What are you looking for?</h6>
+                            <form action="#" method="get">
+                                <select class="custom-select">
+                                    <option selected>Your Destinations</option>
+                                    <option value="1">New York</option>
+                                    <option value="2">Latvia</option>
+                                    <option value="3">Dhaka</option>
+                                    <option value="4">Melbourne</option>
+                                    <option value="5">London</option>
+                                </select>
+                                <select class="custom-select">
+                                    <option selected>All Catagories</option>
+                                    <option value="1">Catagories 1</option>
+                                    <option value="2">Catagories 2</option>
+                                    <option value="3">Catagories 3</option>
+                                </select>
+                                <select class="custom-select">
+                                    <option selected>Price Range</option>
+                                    <option value="1">$100 - $499</option>
+                                    <option value="2">$500 - $999</option>
+                                    <option value="3">$1000 - $4999</option>
+                                </select>
+                                <button type="submit" class="btn SH-btn"><i class="fa fa-search pr-2" aria-hidden="true"></i> Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Social Btn -->
+    <div class="hero-social-btn">
+        <div class="social-title d-flex align-items-center">
+            <h6>Follow us on Social Media</h6>
+            <span></span>
+        </div>
+        <div class="social-btns">
+            <a href="#"><i class="fa fa-linkedin" aria-haspopup="true"></i></a>
+            <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-haspopup="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-haspopup="true"></i></a>
+        </div>
+    </div>
+</section>
+
+
+<section class="SH-catagory-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="all-catagories">
+                    <div class="row">
+                        <!-- Single Catagory Area -->
+                        <div class="col-3 col-lg-3 col-sm-3 col-md"></div>
+                        <div class="col-3 col-lg-3 col-sm-3 col-md">
+                            <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.2s" data-tilt>
+                                <div class="catagory-content">
+                                    <img src="~/Theme/img/core-img/icon-1.png" alt="">
+                                    <a href="#">
+                                        <h6>Hotels</h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Catagory Area -->
+                        <div class="col-3 col-lg-3 col-sm-3 col-md">
+                            <div class="single-catagory-area wow fadeInUpBig" data-wow-delay="0.4s" data-tilt>
+                                <div class="catagory-content">
+                                    <img src="~/Theme/img/core-img/icon-2.png" alt="">
+                                    <a href="#">
+                                        <h6>Restaurants</h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 col-lg-3 col-sm-3 col-md"></div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="SH-about-area section-padding-0-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="about-content text-center">
+                    <h2>Discover best places  <br><span>Best guide ,any destination!</span></h2>
+                    <p>Get guide that leads you to most beatuful places!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="SH-editors-pick-area bg-img bg-overlay-9 section-padding-100" style="background-image: url(../../Theme/img/bg-img/staraPlanina.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <span></span>
+                    <h4>Beautiful Mountains</h4>
+                    <p>Mountains you must see!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="single-editors-pick-area wow fadeInUp" data-wow-delay="0.2s">
+                    <img src="~/Theme/img/bg-img/Rudnik.jpg" alt="">
+                    <div class="editors-pick-info">
+                        <div class="places-total-destinations d-flex">
+                            <a href="#"> Rudnik </a>
+                            <a href="#">Beautiful place  </a>
+                        </div>
+                        @*<div class="add-more">
+                                <a href="#">+</a>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="single-editors-pick-area wow fadeInUp" data-wow-delay="0.4s">
+                    <img src="~/Theme/img/bg-img/Tara.jpg" alt="">
+                    <div class="editors-pick-info">
+                        <div class="places-total-destinations d-flex">
+                            <a href="#">Tara</a>
+                            <a href="#">National Park </a>
+                        </div>
+                        @*<div class="add-more">
+                                <a href="#">+</a>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="single-editors-pick-area wow fadeInUp" data-wow-delay="0.6s">
+                    <img src="~/Theme/img/bg-img/Beljanica.jpg" alt="">
+                    <div class="editors-pick-info">
+                        <div class="places-total-destinations d-flex">
+                            <a href="#">Beljanica</a>
+                            <a href="#">Mountain reach with watter</a>
+                        </div>
+                        @*<div class="add-more">
+                                <a href="#">+</a>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="SH-features-restaurant-area bg-default">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <span></span>
+                    <h4>Featured Restaurants</h4>
+                    <p>Editor’s pick</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="features-slides owl-carousel">
+                    <!-- Single Features Area -->
+                    <div class="single-features-area">
+                        <img src="~/Theme/img/bg-img/feature-6.jpg" alt="">
+                        <!-- Rating & Map Area -->
+                        <div class="ratings-map-area d-flex">
+                            <a href="#">8.5</a>
+                            <a href="#"><img src="~/Theme/img/core-img/map.png" alt=""></a>
+                        </div>
+                        <div class="feature-content d-flex align-items-center justify-content-between">
+                            <div class="feature-title">
+                                <h5>Martha’s bar</h5>
+                                <p>Manhathan</p>
+                            </div>
+                            <div class="feature-favourite">
+                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Features Area -->
+                    <div class="single-features-area">
+                        <img src="~/Theme/img/bg-img/feature-7.jpg" alt="">
+                        <!-- Rating & Map Area -->
+                        <div class="ratings-map-area d-flex">
+                            <a href="#">9.5</a>
+                            <a href="#"><img src="~/Theme/img/core-img/map.png" alt=""></a>
+                        </div>
+                        <div class="feature-content d-flex align-items-center justify-content-between">
+                            <div class="feature-title">
+                                <h5>Delux Restaurant</h5>
+                                <p>Paris</p>
+                            </div>
+                            <div class="feature-favourite">
+                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Features Area -->
+                    <div class="single-features-area">
+                        <img src="~/Theme/img/bg-img/feature-8.jpg" alt="">
+                        <!-- Rating & Map Area -->
+                        <div class="ratings-map-area d-flex">
+                            <a href="#">8.2</a>
+                            <a href="#"><img src="~/Theme/img/core-img/map.png" alt=""></a>
+                        </div>
+                        <div class="feature-content d-flex align-items-center justify-content-between">
+                            <div class="feature-title">
+                                <h5>Jim’s corner Pub</h5>
+                                <p>Madrid</p>
+                            </div>
+                            <div class="feature-favourite">
+                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Features Area -->
+                    <div class="single-features-area">
+                        <img src="~/Theme/img/bg-img/feature-9.jpg" alt="">
+                        <!-- Rating & Map Area -->
+                        <div class="ratings-map-area d-flex">
+                            <a href="#">8.7</a>
+                            <a href="#"><img src="~/Theme/img/core-img/map.png" alt=""></a>
+                        </div>
+                        <div class="feature-content d-flex align-items-center justify-content-between">
+                            <div class="feature-title">
+                                <h5>tower Risto bar</h5>
+                                <p>Sydney</p>
+                            </div>
+                            <div class="feature-favourite">
+                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Features Area -->
+                    <div class="single-features-area">
+                        <img src="~/Theme/img/bg-img/feature-10.jpg" alt="">
+                        <!-- Rating & Map Area -->
+                        <div class="ratings-map-area d-flex">
+                            <a href="#">9.8</a>
+                            <a href="#"><img src="~/Theme/img/core-img/map.png" alt=""></a>
+                        </div>
+                        <div class="feature-content d-flex align-items-center justify-content-between">
+                            <div class="feature-title">
+                                <h5>Pizzeria venezia</h5>
+                                <p>Hong Kong</p>
+                            </div>
+                            <div class="feature-favourite">
+                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="SH-clients-area section-padding-100">
+    <div class="container-fluid">
+        <div class="section-padding-0-100"></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="carousel">
+                    <h2 class="text-center">Our sponsors ! </h2>
+                </div>
+            </div>
+        </div>
+        <div class="section-padding-0-100"></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="clients-logo d-md-flex align-items-center justify-content-around">
+                    <img src="~/Theme/img/clients-img/1.png" alt="">
+                    <img src="~/Theme/img/clients-img/2.png" alt="">
+                    <img src="~/Theme/img/clients-img/3.png" alt="">
+                    <img src="~/Theme/img/clients-img/4.png" alt="">
+                    <img src="~/Theme/img/clients-img/5.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var selectedCountry = document.getElementById("getCountry");
+    function RegisterChangedCountry(id) {
+
+        selectedCountry.value = id;
+    }
+
+</script>

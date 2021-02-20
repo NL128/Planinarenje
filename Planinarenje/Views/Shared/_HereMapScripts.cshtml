@@ -1,0 +1,59 @@
+﻿
+<script>
+
+    function addMarkersToMap(map,lng,lat) {
+        var parisMarker = new H.map.Marker({ lat: lat, lng: lng });
+        map.addObject(parisMarker);
+
+       
+    }
+     // Initialize the platform object:
+    var platform = new H.service.Platform({
+        'apikey': 'kI9Red6f6Bmm5ummtOtMXgTIbML55lQDCFqpgX2ZgLo'
+    });
+
+    // Obtain the default map types from the platform object
+    var maptypes = platform.createDefaultLayers();
+
+    // Instantiate (and display) a map object:
+
+    var map = null;
+    var coords = [];
+
+    var coordsCheker = document.getElementById("CoordsChecker");
+    
+    
+    function initCoors() {
+        if (coordsCheker != null && coordsCheker != "undefined") {
+            coords = coordsCheker.value.split(',');
+            setCoordinates(coords[1], coords[0]);
+        } 
+    }
+    function setCoordinates(lng,lat) {
+        if (map != null) {
+            map = null;
+        }
+        map = new H.Map(
+            document.getElementById('exploreGoogleMap'),
+            maptypes.vector.normal.map,
+            {
+                zoom: 8,
+                center: { lng: lng, lat: lat }
+            });
+        map.getViewPort().resize(); 
+         
+    }
+           
+          
+        
+
+    window.onload = function () {
+        initCoors();
+        if (map != null && map != "undefined") {
+            addMarkersToMap(map, coords[1], coords[0]);
+            console.log("Map is not null " + coords[1] + " lng " + coords[0]);
+        } else {
+            console.log("Map is null");
+        }
+    }
+</script>

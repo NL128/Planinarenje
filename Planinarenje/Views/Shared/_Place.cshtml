@@ -1,0 +1,28 @@
+﻿
+@model DBLibrary.Models.Place
+<!-- Single Features Area -->
+
+<div class="col-12 col-sm-6 col-lg-4" onclick="send(@Model.ID)">
+   
+        <div class="single-features-area mb-50">
+            <img src="~/Theme/img/bg-img/@Model.PlaceImage" alt="">
+            <!-- Price -->
+            <div class="price-start">
+                <p>FROM November</p>
+            </div>
+            <div class="feature-content d-flex align-items-center justify-content-between">
+                <div class="feature-title">
+                    <h5>@Model.PlaceName</h5>
+                    <p>@Model.Subtitle</p>
+                </div>
+                <div class="feature-favourite">
+                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+   
+</div>
+
+
+

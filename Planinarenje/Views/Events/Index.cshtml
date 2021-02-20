@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DBLibrary.Models.Event>
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../Theme/img/bg-img/Rudnik.jpg)">
+    </div>
+
+
+
+<section class="SH-listing-destinations-area section-padding-100-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading dark text-center">
+                    <span></span>
+                    <h4>Every event has different story</h4>
+                    <p>Choose your story</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="EventList">
+            <form action="~/Events/Details" method="get" id="eventFrmID" onsubmit="return Send()">
+                <input type="hidden" name="ID" id="sendID" />
+                @if (Model != null  && Model.Count()>0)
+                {
+                    foreach (var el in Model.ToList())
+                    {
+                        { Html.RenderPartial("_Event", el); }
+                    }
+                }else
+                {
+                    <label class="alert-dark">Nothing Found !</label>
+                }
+            </form>
+
+
+
+
+        </div>
+    </div>
+</section>
+<script>
+    var inputField = document.getElementById("sendID");
+    var frmID = document.getElementById("eventFrmID");
+    function SetValueId(cardId) {
+
+        inputField.value = cardId;
+        if (parseInt(inputField.value) > 0) {
+            frmID.submit();
+        }
+
+    }
+    function Send() {
+
+        if (parseInt(inputField.value) > 0) {
+            return true;
+        }
+        return false;
+
+    }
+
+</script>
+

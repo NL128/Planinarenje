@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edfec8cee8024264875545b0530e9c39" Name="Diagram1">
+        <EntityTypeShape EntityType="PlaninarenjeModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Aktivnosti_Tbl" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.AspNetRole" Width="1.5" PointX="5.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.AspNetUser" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Country_Tbl" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Events_Tbl" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.NivoTure_Tbl" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Ocena_Profila_Tbl" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Profil_Tbl" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Sponzori_Tbl" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Stanje_Tbl" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Tip_Sponzora_Tbl" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Drustva_Tbl" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.DrustvoVodic_Tbl" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Profil_Tbl_Aktivnosti_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Events_Tbl_Country_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Events_Tbl_Profil_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Events_Tbl_Stanje_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Profil_Tbl_Ocena_Profila_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Sponzori_Tbl_Tip_Sponzora_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Hotel_Tbl" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Places_Tbl" Width="1.5" PointX="3" PointY="13.75" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.Restoran_Tbl" Width="1.5" PointX="5.25" PointY="12.875" />
+        <EntityTypeShape EntityType="PlaninarenjeModel.sysdiagram" Width="1.5" PointX="7.375" PointY="11.75" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Hotel_Tbl_Country_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Restoran_Tbl_Country_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel.FK_Events_Tbl_Places_Tbl" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "CreateProfileAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <h2>CreateProfileAdmin</h2>
+        <div id="showIfSuccessful"></div>
+        <div class="mb-3">
+            <label for="createProfileUser" class="form-label">Enter user email</label>
+            <input type="text" class="form-control" id="createProfileUser" name="Email" onchange="CreateProfile()" aria-describedby="PlaceSubHelp">
+            <div id="PlaceSubHelp" class="form-text"> Please add email in the field !</div>
+           
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts{
+    
+    <script>
+        function CreateProfile() {
+         let displayArea=   document.querySelector("#showIfSuccessful");
+            let userInfo = {
+                Email: document.querySelector("#createProfileUser").value
+            }
+            $.ajax({
+                url: "/Admin/CreateProfile",
+                method: "post",
+                data: userInfo,
+                success: function (data) {
+                    displayArea.innerHTML = data;
+                },
+                error: function (data) {
+                    displayArea.innerHTML = data;
+                }
+            })
+        }
+    </script>
+    }

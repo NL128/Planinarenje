@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DBLibrary.Models.EventComment>
+@if (Model != null)
+{
+    foreach (var comment in Model)
+    {
+<div class="single-review-area">
+    <div class="reviewer-meta d-flex align-items-center">
+        <img src="~/Users/Img/@comment.UserInfo.Image" alt="">
+        <div class="reviewer-content">
+            <div class="review-title-ratings d-flex justify-content-between">
+                <h4>@comment.EventComentTitle</h4>
+                <div class="ratings">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        if (i < (int)comment.SingleEvaluation)
+                        {
+                        <img src="~/Theme/img/clients-img/star-fill.png" alt=""> }
+                        else
+                        {
+                        <img src="~/Theme/img/clients-img/star-unfill.png" alt="">                        }
+                    }
+
+
+                </div>
+            </div>
+            <p>@comment.EventCommentDescription</p>
+        </div>
+    </div>
+    <div class="reviewer-name">
+        <h6>@comment.UserInfo.RealUserName</h6>
+        <!--Date time goes here -->
+        <p></p>
+    </div>
+</div>}
+}
+

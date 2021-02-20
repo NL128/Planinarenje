@@ -1,0 +1,10 @@
+﻿@model  DBLibrary.Models.UserInfo
+
+@if (Model.IsGuid)
+{
+    <a href="#" class="btn SH-btn w-100"><i class="fa fa-check pr-3"></i> Guide</a>
+}
+else
+{
+    <a href="#" class="btn SH-btn w-100" style="background-color:red;"><i class="fa fa-times pr-3"></i> Not Guide</a>
+}

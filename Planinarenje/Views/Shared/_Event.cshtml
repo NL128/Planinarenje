@@ -1,0 +1,21 @@
+﻿@model DBLibrary.Models.Event
+
+<div class="card" id="card_@Model.EventID" style="min-width:190px; width:100%; min-height:100px; margin:10px auto;">
+    <div class="row no-gutters">
+        <div class="col-sm-5" style="background: #868e96;">
+            <img src="~/Images/Events/@Model.Image"  class="card-img-top h-100" alt="...">
+        </div>
+        <div class="col-sm-7">
+            <div class="card-body">
+                <h5 class="card-title">@Model.EventName</h5>
+                <p class="card-text">@Model.EventDesription</p>
+                @if (Model.StartDate != null && Model.EndDate != null)
+                {
+                <p class="card-text">@string.Format("From {0} To {1}", Model.StartDate.Value.ToShortDateString(), Model.EndDate.Value.ToShortDateString())</p>
+                }
+                <button type="button"  class="btn btn-primary stretched-link" onclick="SetValueId(@Model.EventID)">Event Details</button>
+            </div>
+        </div>
+    </div>
+</div>
+

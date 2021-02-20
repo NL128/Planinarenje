@@ -1,0 +1,251 @@
+﻿@model DBLibrary.Models.Event
+@{
+    ViewBag.Title = "Details";
+}
+
+    @{Html.RenderPartial("_HereMapLinks"); }
+  
+    <div class="breadcumb-area height-700 bg-img bg-overlay" style="background-image: url(../../Images/Events/@Model.Image)">
+        @if (Model != null)
+        {
+            { Html.RenderPartial("_CoordinateInput", Model.Place.Coordinates); }
+        }
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcumb-content">
+                        <div class="map-ratings-review-area d-flex">
+                            <a href="#lomap" class="d-flex align-items-center justify-content-center"><img src="~/Theme/img/core-img/map.png" alt=""></a>
+                            <a href="#review">4.7</a>
+                            <a href="~/Events/eventComments?id=@Model.EventID">Write a review</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="SH-single-listing-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Single Listing Content -->
+                <div class="col-12 col-lg-8">
+                    <div class="single-listing-content">
+
+                        <div class="listing-title">
+                            <h4>@Model.EventName</h4>
+                            <h6>@Model.Title</h6>
+                        </div>
+
+                        <div class="single-listing-nav">
+                            <nav>
+                                <ul id="listingNav">
+                                    <li class="active"><a href="#overview">Overview</a></li>
+                                    <li><a href="#menu">Events</a></li>
+                                    <li><a href="#review">Reviews</a></li>
+                                    <li><a href="#lomap">Location on map</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="overview-content mt-50" id="overview">
+                            <p>@Model.EventDesription</p>
+                            <div class="row mt-5" id="SetCategories">
+                                @if (Model != null && Model.Aktivnostis.Count() > 0)
+                                {
+                                    foreach (var aktivnost in Model.Aktivnostis)
+                                    {
+
+                                        { Html.RenderPartial("_SelectCategories", aktivnost); }
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <div class="listing-menu-area mt-100" id="menu">
+                            <form action="~/Places/Description" method="get">
+                                <input type="hidden" name="ID" value="@Model.Place.ID" />
+                                <h4>Destination</h4>
+                                <!-- Single Listing Menu -->
+                                <div class="breadcumb-area  bg-img bg-overlay setHeight" style="background-image: url(../../Theme/img/bg-img/@Model.Place.PlaceImage);background-size:cover;border:1px solid #d3d3d3;">
+                                </div>
+                                <div class="single-listing-menu d-flex justify-content-between" style="border:1px ridge #d3d3d3;">
+                                    <!-- Listing Menu Title -->
+
+                                    <div class="listing-menu-title">
+                                        <h6>@Model.Place.PlaceName</h6>
+                                        <p>@Model.Place.Subtitle</p>
+                                    </div>
+                                    <!-- Listing Menu Price -->
+                                    <div class="listing-menu-price">
+                                        <h6>6.4</h6>
+                                    </div>
+                                    <button type="submit" class="btn SH-btn mt-50" style="cursor:pointer;">Place preview</button>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+
+                        <div class="listing-reviews-area mt-100" id="review">
+                            <h4>reviews</h4>
+                            <div class="single-review-area">
+                                <div class="reviewer-meta d-flex align-items-center">
+                                    <img src="~/Theme/img/clients-img/1.jpg" alt="">
+                                    <div class="reviewer-content">
+                                        <div class="review-title-ratings d-flex justify-content-between">
+                                            <h5>“The best Burger in town”</h5>
+                                            <div class="ratings">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nibh sed mi ullamcorper rhoncus. Curabitur pulvinar vel augue sit amet vestibulum. Proin tempus lacus porta lorem blandit aliquam eget quis ipsum. Vivamus accumsan consequat ligula non volutpat.</p>
+                                    </div>
+                                </div>
+                                <div class="reviewer-name">
+                                    <h6>Christinne Smith</h6>
+                                    <p>12 November 2017</p>
+                                </div>
+                            </div>
+                            <div class="single-review-area">
+                                <div class="reviewer-meta d-flex align-items-center">
+                                    <img src="~/Theme/img/clients-img/1.jpg" alt="">
+                                    <div class="reviewer-content">
+                                        <div class="review-title-ratings d-flex justify-content-between">
+                                            <h5>“Quality ingredients”</h5>
+                                            <div class="ratings">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-fill.png" alt="">
+                                                <img src="~/Theme/img/clients-img/star-unfill.png" alt="">
+                                            </div>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nibh sed mi ullamcorper rhoncus. Curabitur pulvinar vel augue sit amet vestibulum. Proin tempus lacus porta lorem blandit aliquam eget quis ipsum. Vivamus accumsan consequat ligula non volutpat.</p>
+                                    </div>
+                                </div>
+                                <div class="reviewer-name">
+                                    <h6>Michael Brown</h6>
+                                    <p>12 November 2017</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="location-on-map mt-50" id="lomap">
+                            <h4>Location on map</h4>
+                            <div class="location-map">
+                                <div id="locationMap">
+                                    <div id="exploreGoogleMap">
+                                        @{
+                                            Html.RenderPartial("_HereMapScripts");
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Listing Sidebar -->
+                <div class="col-12 col-md-8 col-lg-4">
+                    <div class="listing-sidebar">
+
+                        <!-- Listing Verify -->
+                        <div class="listing-verify">
+
+                            @{Html.RenderPartial("_Verified"); }
+                        </div>
+
+                        <!-- Book A Table Widget -->
+                        <div class="book-a-table-widget mt-50">
+                            <h6>Assign to event</h6>
+                            <form action="#" method="get">
+                                <a style="position:relative; color:#fff;margin: 0 0 10px 0;">Your membership</a>
+                                <select class="custom-select" id="catagories">
+                                    <option selected>Select Membership</option>
+                                    <option value="1">Guest </option>
+
+                                </select>
+                                <button type="submit" class="btn SH-btn bg-white text-dark" style="cursor:pointer;"><i class="fa fa-save pr-2" aria-hidden="true"></i> Add</button>
+                            </form>
+                        </div>
+
+                        <!-- Opening Hours Widget -->
+                        <div class="opening-hours-widget mt-50">
+                            <h6>Weekly Plan</h6>
+                            <ul class="opening-hours">
+                                <li>
+                                    <p>Monday</p>
+                                    <p>6 AM - 10 PM</p>
+                                </li>
+                                <li>
+                                    <p>Tuesday</p>
+                                    <p>9 AM - 1 PM</p>
+                                </li>
+                                <li>
+                                    <p>Wednesday</p>
+                                    <p>9 AM - 1 PM</p>
+                                </li>
+                                <li>
+                                    <p>Thursday</p>
+                                    <p>9 AM - 1 PM</p>
+                                </li>
+                                <li>
+                                    <p>Friday</p>
+                                    <p>9 AM - 1 PM</p>
+                                </li>
+                                <li>
+                                    <p>Saturday</p>
+                                    <p>9 AM - 1 PM</p>
+                                </li>
+                                <li>
+                                    <p>Sunday</p>
+                                    <p>9 AM - 1 PM</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Author Widget -->
+                        <div class="author-widget mt-50 d-flex align-items-center">
+                            <img src="~/Theme/img/clients-img/1.jpg" alt="">
+                            <div class="authors-name">
+                                <a href="#">Marija Ivanovic</a>
+                                <p>The Author</p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="contact-form contact-form-widget mt-50">
+                            <h6>Contact guide</h6>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text" name="name" class="form-control" placeholder="Your Name">
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="email" name="email" class="form-control" placeholder="Email Address">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea name="message" class="form-control" id="Message" cols="30" rows="10" placeholder="Your Message"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn SH-btn">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @{ Html.RenderPartial("_GoBack");}

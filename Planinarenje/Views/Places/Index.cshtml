@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DBLibrary.Models.Place>
+@{
+    ViewBag.Title = "Places";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../Theme/img/bg-img/Rudnik.jpg)">
+</div>
+<section class="SH-listing-destinations-area section-padding-100-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading dark text-center">
+                    <span></span>
+                    <h4>Best destinations</h4>
+                    <p>Find destination that suits you</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="EventList">
+            <form style="display:flex;" action="~/Places/Description" method="get" id="placeForm" >
+                <input type="hidden"  name="ID" id="sendId" value=""  />
+                @foreach (var el in Model)
+                {
+
+                    { Html.RenderPartial("_Place", el); }
+                }
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+
+    var invisibleEl = document.getElementById("sendId");
+    function send(id) {
+        invisibleEl.value = id;
+        document.getElementById("placeForm").submit();
+    }
+   
+</script>
+

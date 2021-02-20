@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7823f28a63e7404b93db2f646016d4ba" Name="Diagram1">
+        <EntityTypeShape EntityType="PlaninarenjeModel1.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Aktivnosti_Tbl" Width="1.5" PointX="1.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.AspNetRole" Width="1.5" PointX="5.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Country_Tbl" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Events_Tbl" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Hotel_Tbl" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.NivoTure_Tbl" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Ocena_Profila_Tbl" Width="1.5" PointX="1.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Restoran_Tbl" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Sponzori_Tbl" Width="1.5" PointX="8" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Stanje_Tbl" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.sysdiagram" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Tip_Sponzora_Tbl" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Drustva_Tbl" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Events_Tbl_Country_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Hotel_Tbl_Country_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Restoran_Tbl_Country_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Events_Tbl_Stanje_Tbl" ManuallyRouted="false" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Sponzori_Tbl_Tip_Sponzora_Tbl" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Places_Tbl" Width="1.5" PointX="0.75" PointY="8.25" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Events_Tbl_Places_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Hotel_Tbl_Places_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Restoran_Tbl_Places_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.AktivnostiPlaces_Tbl" Width="1.5" PointX="3.75" PointY="14.125" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_AktivnostiPlaces_Tbl_Aktivnosti_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_AktivnostiPlaces_Tbl_Places_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.AktivnostiEvents_Tbl" Width="1.5" PointX="6.25" PointY="12.625" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_AktivnostiEvents_Tbl_Aktivnosti_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_AktivnostiEvents_Tbl_Events_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.DrustvoVodic_Tbl" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.AspNetUser" Width="1.5" PointX="8" PointY="1.125" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="PlaninarenjeModel1.AspNetUserRoles" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.State" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_State_Country_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.DrustvaProfile_Tbl" Width="1.5" PointX="13" PointY="12.875" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_DrustvaProfile_Tbl_Drustva_Tbl1" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.Profil_Tbl" Width="1.5" PointX="10.25" PointY="12.75" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Profil_Tbl_AspNetUsers" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_DrustvaProfile_Tbl_Profil_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Events_Tbl_Profil_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Profil_Tbl_Ocena_Profila_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.AktivnostiProfiles_Tbl" Width="1.5" PointX="12.5" PointY="16.5" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_AktivnostiProfiles_Tbl_Aktivnosti_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_AktivnostiProfiles_Tbl_Profil_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.ComentPlaces_Tbl" Width="1.5" PointX="13.25" PointY="4.875" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.PlacesOcena_Tbl" Width="1.5" PointX="11" PointY="20.125" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_ComentPlaces_Tbl_AspNetUsers" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_ComentPlaces_Tbl_Places_Tbl" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_ComentPlaces_Tbl_PlacesOcena_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.EventOcena_Tbl" Width="1.5" PointX="13.375" PointY="9" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_EventOcena_Tbl_Events_Tbl" />
+        <EntityTypeShape EntityType="PlaninarenjeModel1.EventComment_tbl" Width="1.5" PointX="10.25" PointY="16.625" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_EventComment_tbl_AspNetUsers" />
+        <AssociationConnector Association="PlaninarenjeModel1.FK_Places_Tbl_Country_Tbl" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

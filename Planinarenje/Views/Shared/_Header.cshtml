@@ -1,0 +1,54 @@
+﻿<header class="header_area" id="header">
+    <div class="container-fluid h-100" >
+        <div class="row h-100">
+            <div class="col-12 h-100">
+                <nav class="h-100 navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="index.html">@*<img src="~/Theme/img/core-img/CompanyLogo.jpg" alt="">*@ Logo Image </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#SHNav" aria-controls="SHNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                    <!-- Nav -->
+                    <div class="collapse navbar-collapse" id="SHNav">
+                        <ul class="navbar-nav mr-auto" id="SHMenu">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Home/Index">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Explore <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item " data-parent="dropdown-item active" href="~/Home/Index">Home</a>
+                                    <a class="dropdown-item active" href="~/Home/Explore">Explore</a>
+                                    <a class="dropdown-item" href="~/Events/Index">Events</a>
+                                    <a class="dropdown-item" href="~/Places/Index">Places</a>
+
+                                    <a class="dropdown-item" href="~/Home/Contact">Contact</a>
+                                    <a class="dropdown-item" href="~/Home/About">About</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Home/Contact">Contact</a>
+                            </li><li class="nav-item" title="Here you can create profile for user." >
+                                <a class="nav-link" href="~/Admin/Index">Administrator</a>
+                            </li>
+                            <li class="nav-item" title="Manage your account.">
+                                <a class="nav-link" href="~/User/Edit">Profile</a>
+                            </li>
+                            <li class="nav-item" title="Here you can create profile for user.">
+                                <a class="nav-link" href="~/Admin/Index">Administrator</a>
+                            </li>
+
+                        </ul>
+                        <!-- Search btn -->
+                        <div class="SH-search-btn">
+                            <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                        </div>
+                        <!-- Signin btn -->
+                        <div class="SH-signin-btn">
+                            @{ Html.RenderPartial("_LoginPartialMod");}
+                        </div>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

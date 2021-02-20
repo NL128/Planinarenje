@@ -1,0 +1,17 @@
+﻿@model  DBLibrary.Models.Aktivnosti
+
+@if (Model != null)
+{
+        <div class="col-6" id="@Model.AktivnostiID">
+            <label class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" disabled contenteditable="false" checked class="custom-control-input">
+                <span class="custom-control-indicator checkBox-color-mod"></span>
+                <span class="custom-control-description">@Model.ImeAktivnosti</span>
+            </label>
+        </div>
+}
+
+
+
+
+

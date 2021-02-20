@@ -1,0 +1,66 @@
+﻿@model Planinarenje.Models.RegisterViewModel
+@{
+    ViewBag.Title = "RegisterModified";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/RegistrationDesign.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../Theme/img/bg-img/Rudnik.jpg)">
+</div>
+
+<div class="container">
+
+
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 800px;">
+                <h4 class="card-title mt-3 text-center">Create Account</h4>
+                <p class="text-center">Get started with your free account</p>
+                <p>
+                    <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                    <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+                </p>
+                <p class="divider-text">
+                    <span class="bg-light">OR</span>
+                </p>
+                
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="RealUserName" class="form-control" placeholder="Full name" type="text">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="Email" class="form-control" placeholder="Email address" type="email">
+                    </div> <!-- form-group// -->
+                     <!-- form-group// -->
+                   
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" name="Password" placeholder="Create password" type="password">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" name="ConfirmPassword" placeholder="Repeat password" type="password">
+                    </div> <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn SH-btn btn-block"> Create Account  </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Have an account? <a href="~/Account/Login">Log In</a> </p>
+               
+            </article>
+        </div> <!-- card.// -->
+    }
+</div>
+<!--container end.//-->

@@ -1,0 +1,1132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PlaninarenjeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Aktivnosti_Tbl">
+          <Key>
+            <PropertyRef Name="AktivnostiID" />
+          </Key>
+          <Property Name="AktivnostiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImeAktivnosti" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsGuid" Type="bit" Nullable="false" />
+          <Property Name="RealUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="NivoTure" Type="int" Nullable="false" />
+          <Property Name="Profil" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country_Tbl">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Coordinates" Type="nvarchar" MaxLength="17" />
+          <Property Name="ImageFlag" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Planinarenje.dbo.Drustva_Tbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Drustva_Tbl">
+          <Key>
+            <PropertyRef Name="PD_ID" />
+          </Key>
+          <Property Name="PD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImeDrustva" Type="nvarchar" MaxLength="120" />
+          <Property Name="AdresaDrustva" Type="nvarchar" MaxLength="150" />
+          <Property Name="Koordinate" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Planinarenje.dbo.DrustvoVodic_Tbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DrustvoVodic_Tbl">
+          <Key>
+            <PropertyRef Name="DrustvoID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="DrustvoID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events_Tbl">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventDesription" Type="nvarchar" MaxLength="250" />
+          <Property Name="Price" Type="money" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="TrenutnoStanje_id" Type="int" />
+          <Property Name="Profil_Id" Type="int" />
+          <Property Name="Country_id" Type="int" />
+          <Property Name="Places_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Hotel_Tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="150" />
+          <Property Name="CountryId" Type="int" />
+        </EntityType>
+        <EntityType Name="NivoTure_Tbl">
+          <Key>
+            <PropertyRef Name="NivoTureID" />
+          </Key>
+          <Property Name="NivoTureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazivNivoaTure" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ocena_Profila_Tbl">
+          <Key>
+            <PropertyRef Name="OcenaID" />
+          </Key>
+          <Property Name="OcenaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nivo1" Type="int" Nullable="false" />
+          <Property Name="Nivo2" Type="int" Nullable="false" />
+          <Property Name="Nivo3" Type="int" Nullable="false" />
+          <Property Name="Nivo4" Type="int" Nullable="false" />
+          <Property Name="Nivo5" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Places_Tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlaceName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PlaceImage" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Subtitle" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Profil_Tbl">
+          <Key>
+            <PropertyRef Name="ProfilID" />
+          </Key>
+          <Property Name="ProfilID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImeProfila" Type="nvarchar" MaxLength="50" />
+          <Property Name="GlavnaAktivnost_Id" Type="int" />
+          <Property Name="Ocena_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Restoran_Tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RestoranName" Type="nvarchar" MaxLength="150" />
+          <Property Name="CountryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Sponzori_Tbl">
+          <Key>
+            <PropertyRef Name="Sponzori_ID" />
+          </Key>
+          <Property Name="Sponzori_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImeSponzora" Type="nvarchar" MaxLength="100" />
+          <Property Name="TipSponzora_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Stanje_Tbl">
+          <Key>
+            <PropertyRef Name="StanjeID" />
+          </Key>
+          <Property Name="StanjeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrenutnoStanje" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tip_Sponzora_Tbl">
+          <Key>
+            <PropertyRef Name="TipSponzoraID" />
+          </Key>
+          <Property Name="TipSponzoraID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipSponzoraIme" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Country_Tbl">
+          <End Role="Country_Tbl" Type="Self.Country_Tbl" Multiplicity="0..1" />
+          <End Role="Events_Tbl" Type="Self.Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Tbl">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="Country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Places_Tbl">
+          <End Role="Places_Tbl" Type="Self.Places_Tbl" Multiplicity="0..1" />
+          <End Role="Events_Tbl" Type="Self.Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places_Tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="Places_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Profil_Tbl">
+          <End Role="Profil_Tbl" Type="Self.Profil_Tbl" Multiplicity="0..1" />
+          <End Role="Events_Tbl" Type="Self.Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profil_Tbl">
+              <PropertyRef Name="ProfilID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="Profil_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Stanje_Tbl">
+          <End Role="Stanje_Tbl" Type="Self.Stanje_Tbl" Multiplicity="0..1" />
+          <End Role="Events_Tbl" Type="Self.Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stanje_Tbl">
+              <PropertyRef Name="StanjeID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="TrenutnoStanje_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hotel_Tbl_Country_Tbl">
+          <End Role="Country_Tbl" Type="Self.Country_Tbl" Multiplicity="0..1" />
+          <End Role="Hotel_Tbl" Type="Self.Hotel_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Tbl">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Hotel_Tbl">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profil_Tbl_Aktivnosti_Tbl">
+          <End Role="Aktivnosti_Tbl" Type="Self.Aktivnosti_Tbl" Multiplicity="0..1" />
+          <End Role="Profil_Tbl" Type="Self.Profil_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aktivnosti_Tbl">
+              <PropertyRef Name="AktivnostiID" />
+            </Principal>
+            <Dependent Role="Profil_Tbl">
+              <PropertyRef Name="GlavnaAktivnost_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profil_Tbl_Ocena_Profila_Tbl">
+          <End Role="Ocena_Profila_Tbl" Type="Self.Ocena_Profila_Tbl" Multiplicity="0..1" />
+          <End Role="Profil_Tbl" Type="Self.Profil_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ocena_Profila_Tbl">
+              <PropertyRef Name="OcenaID" />
+            </Principal>
+            <Dependent Role="Profil_Tbl">
+              <PropertyRef Name="Ocena_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restoran_Tbl_Country_Tbl">
+          <End Role="Country_Tbl" Type="Self.Country_Tbl" Multiplicity="0..1" />
+          <End Role="Restoran_Tbl" Type="Self.Restoran_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Tbl">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Restoran_Tbl">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sponzori_Tbl_Tip_Sponzora_Tbl">
+          <End Role="Tip_Sponzora_Tbl" Type="Self.Tip_Sponzora_Tbl" Multiplicity="0..1" />
+          <End Role="Sponzori_Tbl" Type="Self.Sponzori_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_Sponzora_Tbl">
+              <PropertyRef Name="TipSponzoraID" />
+            </Principal>
+            <Dependent Role="Sponzori_Tbl">
+              <PropertyRef Name="TipSponzora_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PlaninarenjeModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aktivnosti_Tbl" EntityType="Self.Aktivnosti_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country_Tbl" EntityType="Self.Country_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events_Tbl" EntityType="Self.Events_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel_Tbl" EntityType="Self.Hotel_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NivoTure_Tbl" EntityType="Self.NivoTure_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ocena_Profila_Tbl" EntityType="Self.Ocena_Profila_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Places_Tbl" EntityType="Self.Places_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profil_Tbl" EntityType="Self.Profil_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restoran_Tbl" EntityType="Self.Restoran_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sponzori_Tbl" EntityType="Self.Sponzori_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stanje_Tbl" EntityType="Self.Stanje_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tip_Sponzora_Tbl" EntityType="Self.Tip_Sponzora_Tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drustva_Tbl" EntityType="Self.Drustva_Tbl" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Drustva_Tbl].[PD_ID] AS [PD_ID], 
+    [Drustva_Tbl].[ImeDrustva] AS [ImeDrustva], 
+    [Drustva_Tbl].[AdresaDrustva] AS [AdresaDrustva], 
+    [Drustva_Tbl].[Koordinate] AS [Koordinate]
+    FROM [dbo].[Drustva_Tbl] AS [Drustva_Tbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DrustvoVodic_Tbl" EntityType="Self.DrustvoVodic_Tbl" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DrustvoVodic_Tbl].[DrustvoID] AS [DrustvoID], 
+    [DrustvoVodic_Tbl].[UserID] AS [UserID]
+    FROM [dbo].[DrustvoVodic_Tbl] AS [DrustvoVodic_Tbl]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Country_Tbl" Association="Self.FK_Events_Tbl_Country_Tbl">
+            <End Role="Country_Tbl" EntitySet="Country_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Places_Tbl" Association="Self.FK_Events_Tbl_Places_Tbl">
+            <End Role="Places_Tbl" EntitySet="Places_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Profil_Tbl" Association="Self.FK_Events_Tbl_Profil_Tbl">
+            <End Role="Profil_Tbl" EntitySet="Profil_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Stanje_Tbl" Association="Self.FK_Events_Tbl_Stanje_Tbl">
+            <End Role="Stanje_Tbl" EntitySet="Stanje_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hotel_Tbl_Country_Tbl" Association="Self.FK_Hotel_Tbl_Country_Tbl">
+            <End Role="Country_Tbl" EntitySet="Country_Tbl" />
+            <End Role="Hotel_Tbl" EntitySet="Hotel_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profil_Tbl_Aktivnosti_Tbl" Association="Self.FK_Profil_Tbl_Aktivnosti_Tbl">
+            <End Role="Aktivnosti_Tbl" EntitySet="Aktivnosti_Tbl" />
+            <End Role="Profil_Tbl" EntitySet="Profil_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profil_Tbl_Ocena_Profila_Tbl" Association="Self.FK_Profil_Tbl_Ocena_Profila_Tbl">
+            <End Role="Ocena_Profila_Tbl" EntitySet="Ocena_Profila_Tbl" />
+            <End Role="Profil_Tbl" EntitySet="Profil_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restoran_Tbl_Country_Tbl" Association="Self.FK_Restoran_Tbl_Country_Tbl">
+            <End Role="Country_Tbl" EntitySet="Country_Tbl" />
+            <End Role="Restoran_Tbl" EntitySet="Restoran_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sponzori_Tbl_Tip_Sponzora_Tbl" Association="Self.FK_Sponzori_Tbl_Tip_Sponzora_Tbl">
+            <End Role="Tip_Sponzora_Tbl" EntitySet="Tip_Sponzora_Tbl" />
+            <End Role="Sponzori_Tbl" EntitySet="Sponzori_Tbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PlaninarenjeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Aktivnosti_Tbl">
+          <Key>
+            <PropertyRef Name="AktivnostiID" />
+          </Key>
+          <Property Name="AktivnostiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImeAktivnosti" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Profil_Tbl" Relationship="Self.FK_Profil_Tbl_Aktivnosti_Tbl" FromRole="Aktivnosti_Tbl" ToRole="Profil_Tbl" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsGuid" Type="Boolean" Nullable="false" />
+          <Property Name="RealUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NivoTure" Type="Int32" Nullable="false" />
+          <Property Name="Profil" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Country_Tbl">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinates" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="ImageFlag" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events_Tbl" Relationship="Self.FK_Events_Tbl_Country_Tbl" FromRole="Country_Tbl" ToRole="Events_Tbl" />
+          <NavigationProperty Name="Hotel_Tbl" Relationship="PlaninarenjeModel.FK_Hotel_Tbl_Country_Tbl" FromRole="Country_Tbl" ToRole="Hotel_Tbl" />
+          <NavigationProperty Name="Restoran_Tbl" Relationship="PlaninarenjeModel.FK_Restoran_Tbl_Country_Tbl" FromRole="Country_Tbl" ToRole="Restoran_Tbl" />
+        </EntityType>
+        <EntityType Name="Events_Tbl">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventDesription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="TrenutnoStanje_id" Type="Int32" />
+          <Property Name="Profil_Id" Type="Int32" />
+          <Property Name="Country_id" Type="Int32" />
+          <NavigationProperty Name="Country_Tbl" Relationship="Self.FK_Events_Tbl_Country_Tbl" FromRole="Events_Tbl" ToRole="Country_Tbl" />
+          <NavigationProperty Name="Profil_Tbl" Relationship="Self.FK_Events_Tbl_Profil_Tbl" FromRole="Events_Tbl" ToRole="Profil_Tbl" />
+          <NavigationProperty Name="Stanje_Tbl" Relationship="Self.FK_Events_Tbl_Stanje_Tbl" FromRole="Events_Tbl" ToRole="Stanje_Tbl" />
+          <Property Name="Places_id" Type="Int32" />
+          <NavigationProperty Name="Places_Tbl" Relationship="PlaninarenjeModel.FK_Events_Tbl_Places_Tbl" FromRole="Events_Tbl" ToRole="Places_Tbl" />
+        </EntityType>
+        <EntityType Name="NivoTure_Tbl">
+          <Key>
+            <PropertyRef Name="NivoTureID" />
+          </Key>
+          <Property Name="NivoTureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazivNivoaTure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ocena_Profila_Tbl">
+          <Key>
+            <PropertyRef Name="OcenaID" />
+          </Key>
+          <Property Name="OcenaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nivo1" Type="Int32" Nullable="false" />
+          <Property Name="Nivo2" Type="Int32" Nullable="false" />
+          <Property Name="Nivo3" Type="Int32" Nullable="false" />
+          <Property Name="Nivo4" Type="Int32" Nullable="false" />
+          <Property Name="Nivo5" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Profil_Tbl" Relationship="Self.FK_Profil_Tbl_Ocena_Profila_Tbl" FromRole="Ocena_Profila_Tbl" ToRole="Profil_Tbl" />
+        </EntityType>
+        <EntityType Name="Profil_Tbl">
+          <Key>
+            <PropertyRef Name="ProfilID" />
+          </Key>
+          <Property Name="ProfilID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImeProfila" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GlavnaAktivnost_Id" Type="Int32" />
+          <Property Name="Ocena_Id" Type="Int32" />
+          <NavigationProperty Name="Aktivnosti_Tbl" Relationship="Self.FK_Profil_Tbl_Aktivnosti_Tbl" FromRole="Profil_Tbl" ToRole="Aktivnosti_Tbl" />
+          <NavigationProperty Name="Events_Tbl" Relationship="Self.FK_Events_Tbl_Profil_Tbl" FromRole="Profil_Tbl" ToRole="Events_Tbl" />
+          <NavigationProperty Name="Ocena_Profila_Tbl" Relationship="Self.FK_Profil_Tbl_Ocena_Profila_Tbl" FromRole="Profil_Tbl" ToRole="Ocena_Profila_Tbl" />
+        </EntityType>
+        <EntityType Name="Sponzori_Tbl">
+          <Key>
+            <PropertyRef Name="Sponzori_ID" />
+          </Key>
+          <Property Name="Sponzori_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImeSponzora" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TipSponzora_id" Type="Int32" />
+          <NavigationProperty Name="Tip_Sponzora_Tbl" Relationship="Self.FK_Sponzori_Tbl_Tip_Sponzora_Tbl" FromRole="Sponzori_Tbl" ToRole="Tip_Sponzora_Tbl" />
+        </EntityType>
+        <EntityType Name="Stanje_Tbl">
+          <Key>
+            <PropertyRef Name="StanjeID" />
+          </Key>
+          <Property Name="StanjeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrenutnoStanje" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events_Tbl" Relationship="Self.FK_Events_Tbl_Stanje_Tbl" FromRole="Stanje_Tbl" ToRole="Events_Tbl" />
+        </EntityType>
+        <EntityType Name="Tip_Sponzora_Tbl">
+          <Key>
+            <PropertyRef Name="TipSponzoraID" />
+          </Key>
+          <Property Name="TipSponzoraID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipSponzoraIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sponzori_Tbl" Relationship="Self.FK_Sponzori_Tbl_Tip_Sponzora_Tbl" FromRole="Tip_Sponzora_Tbl" ToRole="Sponzori_Tbl" />
+        </EntityType>
+        <EntityType Name="Drustva_Tbl">
+          <Key>
+            <PropertyRef Name="PD_ID" />
+          </Key>
+          <Property Name="PD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImeDrustva" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="AdresaDrustva" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Koordinate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DrustvoVodic_Tbl">
+          <Key>
+            <PropertyRef Name="DrustvoID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="DrustvoID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Profil_Tbl_Aktivnosti_Tbl">
+          <End Role="Aktivnosti_Tbl" Type="Self.Aktivnosti_Tbl" Multiplicity="0..1" />
+          <End Role="Profil_Tbl" Type="Self.Profil_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aktivnosti_Tbl">
+              <PropertyRef Name="AktivnostiID" />
+            </Principal>
+            <Dependent Role="Profil_Tbl">
+              <PropertyRef Name="GlavnaAktivnost_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Country_Tbl">
+          <End Role="Country_Tbl" Type="Self.Country_Tbl" Multiplicity="0..1" />
+          <End Role="Events_Tbl" Type="Self.Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Tbl">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="Country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Profil_Tbl">
+          <End Role="Profil_Tbl" Type="Self.Profil_Tbl" Multiplicity="0..1" />
+          <End Role="Events_Tbl" Type="Self.Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profil_Tbl">
+              <PropertyRef Name="ProfilID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="Profil_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Stanje_Tbl">
+          <End Role="Stanje_Tbl" Type="Self.Stanje_Tbl" Multiplicity="0..1" />
+          <End Role="Events_Tbl" Type="Self.Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stanje_Tbl">
+              <PropertyRef Name="StanjeID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="TrenutnoStanje_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profil_Tbl_Ocena_Profila_Tbl">
+          <End Role="Ocena_Profila_Tbl" Type="Self.Ocena_Profila_Tbl" Multiplicity="0..1" />
+          <End Role="Profil_Tbl" Type="Self.Profil_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ocena_Profila_Tbl">
+              <PropertyRef Name="OcenaID" />
+            </Principal>
+            <Dependent Role="Profil_Tbl">
+              <PropertyRef Name="Ocena_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sponzori_Tbl_Tip_Sponzora_Tbl">
+          <End Role="Tip_Sponzora_Tbl" Type="Self.Tip_Sponzora_Tbl" Multiplicity="0..1" />
+          <End Role="Sponzori_Tbl" Type="Self.Sponzori_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_Sponzora_Tbl">
+              <PropertyRef Name="TipSponzoraID" />
+            </Principal>
+            <Dependent Role="Sponzori_Tbl">
+              <PropertyRef Name="TipSponzora_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PlaninarenjeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Aktivnosti_Tbl" EntityType="Self.Aktivnosti_Tbl" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Country_Tbl" EntityType="Self.Country_Tbl" />
+          <EntitySet Name="Events_Tbl" EntityType="Self.Events_Tbl" />
+          <EntitySet Name="NivoTure_Tbl" EntityType="Self.NivoTure_Tbl" />
+          <EntitySet Name="Ocena_Profila_Tbl" EntityType="Self.Ocena_Profila_Tbl" />
+          <EntitySet Name="Profil_Tbl" EntityType="Self.Profil_Tbl" />
+          <EntitySet Name="Sponzori_Tbl" EntityType="Self.Sponzori_Tbl" />
+          <EntitySet Name="Stanje_Tbl" EntityType="Self.Stanje_Tbl" />
+          <EntitySet Name="Tip_Sponzora_Tbl" EntityType="Self.Tip_Sponzora_Tbl" />
+          <EntitySet Name="Drustva_Tbl" EntityType="Self.Drustva_Tbl" />
+          <EntitySet Name="DrustvoVodic_Tbl" EntityType="Self.DrustvoVodic_Tbl" />
+          <AssociationSet Name="FK_Profil_Tbl_Aktivnosti_Tbl" Association="Self.FK_Profil_Tbl_Aktivnosti_Tbl">
+            <End Role="Aktivnosti_Tbl" EntitySet="Aktivnosti_Tbl" />
+            <End Role="Profil_Tbl" EntitySet="Profil_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Country_Tbl" Association="Self.FK_Events_Tbl_Country_Tbl">
+            <End Role="Country_Tbl" EntitySet="Country_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Profil_Tbl" Association="Self.FK_Events_Tbl_Profil_Tbl">
+            <End Role="Profil_Tbl" EntitySet="Profil_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Stanje_Tbl" Association="Self.FK_Events_Tbl_Stanje_Tbl">
+            <End Role="Stanje_Tbl" EntitySet="Stanje_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profil_Tbl_Ocena_Profila_Tbl" Association="Self.FK_Profil_Tbl_Ocena_Profila_Tbl">
+            <End Role="Ocena_Profila_Tbl" EntitySet="Ocena_Profila_Tbl" />
+            <End Role="Profil_Tbl" EntitySet="Profil_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sponzori_Tbl_Tip_Sponzora_Tbl" Association="Self.FK_Sponzori_Tbl_Tip_Sponzora_Tbl">
+            <End Role="Tip_Sponzora_Tbl" EntitySet="Tip_Sponzora_Tbl" />
+            <End Role="Sponzori_Tbl" EntitySet="Sponzori_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Hotel_Tbl" EntityType="PlaninarenjeModel.Hotel_Tbl" />
+          <EntitySet Name="Places_Tbl" EntityType="PlaninarenjeModel.Places_Tbl" />
+          <EntitySet Name="Restoran_Tbl" EntityType="PlaninarenjeModel.Restoran_Tbl" />
+          <EntitySet Name="sysdiagrams" EntityType="PlaninarenjeModel.sysdiagram" />
+          <AssociationSet Name="FK_Hotel_Tbl_Country_Tbl" Association="PlaninarenjeModel.FK_Hotel_Tbl_Country_Tbl">
+            <End Role="Country_Tbl" EntitySet="Country_Tbl" />
+            <End Role="Hotel_Tbl" EntitySet="Hotel_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restoran_Tbl_Country_Tbl" Association="PlaninarenjeModel.FK_Restoran_Tbl_Country_Tbl">
+            <End Role="Country_Tbl" EntitySet="Country_Tbl" />
+            <End Role="Restoran_Tbl" EntitySet="Restoran_Tbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_Tbl_Places_Tbl" Association="PlaninarenjeModel.FK_Events_Tbl_Places_Tbl">
+            <End Role="Places_Tbl" EntitySet="Places_Tbl" />
+            <End Role="Events_Tbl" EntitySet="Events_Tbl" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Hotel_Tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <NavigationProperty Name="Country_Tbl" Relationship="PlaninarenjeModel.FK_Hotel_Tbl_Country_Tbl" FromRole="Hotel_Tbl" ToRole="Country_Tbl" />
+        </EntityType>
+        <EntityType Name="Places_Tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceImage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subtitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events_Tbl" Relationship="PlaninarenjeModel.FK_Events_Tbl_Places_Tbl" FromRole="Places_Tbl" ToRole="Events_Tbl" />
+        </EntityType>
+        <EntityType Name="Restoran_Tbl">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RestoranName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <NavigationProperty Name="Country_Tbl" Relationship="PlaninarenjeModel.FK_Restoran_Tbl_Country_Tbl" FromRole="Restoran_Tbl" ToRole="Country_Tbl" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Hotel_Tbl_Country_Tbl">
+          <End Type="PlaninarenjeModel.Country_Tbl" Role="Country_Tbl" Multiplicity="0..1" />
+          <End Type="PlaninarenjeModel.Hotel_Tbl" Role="Hotel_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Tbl">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Hotel_Tbl">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restoran_Tbl_Country_Tbl">
+          <End Type="PlaninarenjeModel.Country_Tbl" Role="Country_Tbl" Multiplicity="0..1" />
+          <End Type="PlaninarenjeModel.Restoran_Tbl" Role="Restoran_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Tbl">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Restoran_Tbl">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_Tbl_Places_Tbl">
+          <End Type="PlaninarenjeModel.Places_Tbl" Role="Places_Tbl" Multiplicity="0..1" />
+          <End Type="PlaninarenjeModel.Events_Tbl" Role="Events_Tbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places_Tbl">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Events_Tbl">
+              <PropertyRef Name="Places_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PlaninarenjeModelStoreContainer" CdmEntityContainer="PlaninarenjeEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aktivnosti_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Aktivnosti_Tbl">
+              <MappingFragment StoreEntitySet="Aktivnosti_Tbl">
+                <ScalarProperty Name="AktivnostiID" ColumnName="AktivnostiID" />
+                <ScalarProperty Name="ImeAktivnosti" ColumnName="ImeAktivnosti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsGuid" ColumnName="IsGuid" />
+                <ScalarProperty Name="RealUserName" ColumnName="RealUserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="NivoTure" ColumnName="NivoTure" />
+                <ScalarProperty Name="Profil" ColumnName="Profil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Country_Tbl">
+              <MappingFragment StoreEntitySet="Country_Tbl">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="ImageFlag" ColumnName="ImageFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Events_Tbl">
+              <MappingFragment StoreEntitySet="Events_Tbl">
+                <ScalarProperty Name="Places_id" ColumnName="Places_id" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventDesription" ColumnName="EventDesription" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="TrenutnoStanje_id" ColumnName="TrenutnoStanje_id" />
+                <ScalarProperty Name="Profil_Id" ColumnName="Profil_Id" />
+                <ScalarProperty Name="Country_id" ColumnName="Country_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NivoTure_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.NivoTure_Tbl">
+              <MappingFragment StoreEntitySet="NivoTure_Tbl">
+                <ScalarProperty Name="NivoTureID" ColumnName="NivoTureID" />
+                <ScalarProperty Name="NazivNivoaTure" ColumnName="NazivNivoaTure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ocena_Profila_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Ocena_Profila_Tbl">
+              <MappingFragment StoreEntitySet="Ocena_Profila_Tbl">
+                <ScalarProperty Name="OcenaID" ColumnName="OcenaID" />
+                <ScalarProperty Name="Nivo1" ColumnName="Nivo1" />
+                <ScalarProperty Name="Nivo2" ColumnName="Nivo2" />
+                <ScalarProperty Name="Nivo3" ColumnName="Nivo3" />
+                <ScalarProperty Name="Nivo4" ColumnName="Nivo4" />
+                <ScalarProperty Name="Nivo5" ColumnName="Nivo5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profil_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Profil_Tbl">
+              <MappingFragment StoreEntitySet="Profil_Tbl">
+                <ScalarProperty Name="ProfilID" ColumnName="ProfilID" />
+                <ScalarProperty Name="ImeProfila" ColumnName="ImeProfila" />
+                <ScalarProperty Name="GlavnaAktivnost_Id" ColumnName="GlavnaAktivnost_Id" />
+                <ScalarProperty Name="Ocena_Id" ColumnName="Ocena_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sponzori_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Sponzori_Tbl">
+              <MappingFragment StoreEntitySet="Sponzori_Tbl">
+                <ScalarProperty Name="Sponzori_ID" ColumnName="Sponzori_ID" />
+                <ScalarProperty Name="ImeSponzora" ColumnName="ImeSponzora" />
+                <ScalarProperty Name="TipSponzora_id" ColumnName="TipSponzora_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stanje_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Stanje_Tbl">
+              <MappingFragment StoreEntitySet="Stanje_Tbl">
+                <ScalarProperty Name="StanjeID" ColumnName="StanjeID" />
+                <ScalarProperty Name="TrenutnoStanje" ColumnName="TrenutnoStanje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip_Sponzora_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Tip_Sponzora_Tbl">
+              <MappingFragment StoreEntitySet="Tip_Sponzora_Tbl">
+                <ScalarProperty Name="TipSponzoraID" ColumnName="TipSponzoraID" />
+                <ScalarProperty Name="TipSponzoraIme" ColumnName="TipSponzoraIme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drustva_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Drustva_Tbl">
+              <MappingFragment StoreEntitySet="Drustva_Tbl">
+                <ScalarProperty Name="PD_ID" ColumnName="PD_ID" />
+                <ScalarProperty Name="ImeDrustva" ColumnName="ImeDrustva" />
+                <ScalarProperty Name="AdresaDrustva" ColumnName="AdresaDrustva" />
+                <ScalarProperty Name="Koordinate" ColumnName="Koordinate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DrustvoVodic_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.DrustvoVodic_Tbl">
+              <MappingFragment StoreEntitySet="DrustvoVodic_Tbl">
+                <ScalarProperty Name="DrustvoID" ColumnName="DrustvoID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="PlaninarenjeModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Hotel_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Hotel_Tbl">
+              <MappingFragment StoreEntitySet="Hotel_Tbl">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Places_Tbl">
+              <MappingFragment StoreEntitySet="Places_Tbl">
+                <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PlaceImage" ColumnName="PlaceImage" />
+                <ScalarProperty Name="PlaceName" ColumnName="PlaceName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restoran_Tbl">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.Restoran_Tbl">
+              <MappingFragment StoreEntitySet="Restoran_Tbl">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="RestoranName" ColumnName="RestoranName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PlaninarenjeModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
